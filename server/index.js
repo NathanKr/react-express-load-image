@@ -6,18 +6,16 @@ const app = express();
 app.use(express.json());
 
 const multer = require("multer");
-const upload = multer({ dest: "/upload/" });
+// --- multer will store all files in this directory
+const upload = multer({ dest: "upload/" });
 
-app.get("/api", (req, res) => {
-  console.log("GET : root is accessed");
-  res.send({ res: "result from server !!!" });
-});
-
-app.post("/api", (req, res) => {
+// --- someFile is the key that was inserted in the client FormData
+app.post("/api",  upload.single('someFile'),(req, res,next) => {
   console.log(req.body);
-  console.log(req.params);
+  console.log(req.file);
+
   console.log("POST : root is accessed");
-  res.send({ res: "result from server !!!" });
+  res.sendStatus(201);
 });
 
 
