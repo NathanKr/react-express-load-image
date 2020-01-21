@@ -31,6 +31,7 @@ class ShowFromServer extends Component {
         <input onChange={evt => this.setState({ newFile: evt.target.value })} />
         <br />
         <button onClick={this.getFromServer}>Show</button>
+        <br/>
         {this.state.img ? <img src={this.state.img} alt="pic" /> : ""}
       </div>
     );
