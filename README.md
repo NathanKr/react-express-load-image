@@ -19,4 +19,5 @@ dynamically load file(image) and more from react spa to express using rest api
 <h2>Points of interest</h2>
 <ul>
 <li>one can store the images on the client public directory. you will not need axios to load them but every time it is done create-react-app will cause browser refresh. this will not happen in production</li>
+<li>the path for the stored images can be stored in database for further usage</li>
 </ul>
