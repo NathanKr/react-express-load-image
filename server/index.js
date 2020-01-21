@@ -3,11 +3,11 @@ const express = require("express");
 const app = express();
 const path = require("path");
 
-// --- used for json inside body
-app.use(express.json());
 
-// --- used for inputs with file 
+// --- multer is used for content-type: multipart/form-data 
+// --- it is a must for loading file 
 const multer = require("multer");
+
 // --- multer will store all files in this directory under root
 const uploadDirectory = "upload/";
 
@@ -23,7 +23,7 @@ app.post("/api", upload.single("someFile"), (req, res) => {
 });
 
 // --- get image file
-app.get("/api/:newFile", (req, res) => {
+app.get("/images/:newFile", (req, res) => {
   const fileName = path.join(
     __dirname,
     uploadDirectory,

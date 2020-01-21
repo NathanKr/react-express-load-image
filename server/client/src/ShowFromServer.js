@@ -7,7 +7,7 @@ class ShowFromServer extends Component {
 
   getFromServer = () => {
     axios
-      .get(`/api/${this.state.newFile}`, { responseType: "blob" })
+      .get(`/images/${this.state.newFile}`, { responseType: "blob" })
       .then(res => {
         this.setState({ img: null });
         if (res.status === 200) {
@@ -31,7 +31,7 @@ class ShowFromServer extends Component {
         <input onChange={evt => this.setState({ newFile: evt.target.value })} />
         <br />
         <button onClick={this.getFromServer}>Show</button>
-        <br/>
+        <br />
         {this.state.img ? <img src={this.state.img} alt="pic" /> : ""}
       </div>
     );
