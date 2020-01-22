@@ -47,7 +47,7 @@ class LoadToServer extends Component {
           />
           <br />
           <button onClick={this.loadToServer}>Load</button>
-          <p>new file : {this.state.newFileName}</p>
+          <p>newFileName : {this.state.newFileName}</p>
       </div>
     );
   }
