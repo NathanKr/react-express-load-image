@@ -23,11 +23,11 @@ app.post("/api", upload.single("someFile"), (req, res) => {
 });
 
 // --- get image file
-app.get("/images/:newFile", (req, res) => {
+app.get("/images/:newFileName", (req, res) => {
   const fileName = path.join(
     __dirname,
     uploadDirectory,
-    req.params.newFile
+    req.params.newFileName
   );
   console.log("GET : root is accessed");
   res.sendFile(fileName);

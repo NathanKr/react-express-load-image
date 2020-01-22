@@ -3,10 +3,10 @@ import axios from "axios";
 import "./LoadToServer.css";
 
 class LoadToServer extends Component {
-  state = { someText: "", file: "", newFile: "" };
+  state = { someText: "", file: "", newFileName: "" };
   url = "/api";
 
-  handleSubmit = () => {
+  loadToServer = () => {
     let formData = new FormData();
     formData.append("someFile", this.state.file);
     formData.append("someText", this.state.someText);
@@ -22,7 +22,7 @@ class LoadToServer extends Component {
       .then(res => {
         if (res.status === 201) {
           console.log(res.data);
-          this.setState({ newFile: res.data.file.filename });
+          this.setState({ newFileName: res.data.file.filename });
         } else {
           console.log(`error status code : ${res.status}`);
         }
@@ -46,8 +46,8 @@ class LoadToServer extends Component {
             onChange={evt => this.setState({ file: evt.target.files[0] })}
           />
           <br />
-          <button onClick={this.handleSubmit}>Load</button>
-          <p>new file : {this.state.newFile}</p>
+          <button onClick={this.loadToServer}>Load</button>
+          <p>new file : {this.state.newFileName}</p>
       </div>
     );
   }
