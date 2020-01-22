@@ -1,23 +1,25 @@
 import React, { Component } from "react";
-import axios from "axios";
 import "./ShowFromServer.css";
+import axios from "axios";
 
 class ShowFromServer extends Component {
-  state = { img: null, newFileName: "" };
+  state = { img: "", newFileName: "" };
 
   getImageFromServer = () => {
     axios
       .get(`/images/${this.state.newFileName}`, { responseType: "blob" })
       .then(res => {
-        this.setState({ img: null });
         if (res.status === 200) {
-          const reader = new window.FileReader();
+          const reader = new FileReader();
           reader.readAsDataURL(res.data);
           const _this = this;
-          reader.onload = function() {
-            const imageDataUrl = reader.result;
-            _this.setState({ img: imageDataUrl });
-          };
+          reader.onload = function(){
+              const imageDataUrl = reader.result;
+              _this.setState({img:imageDataUrl});
+          }
+
+        } else {
+          console.log(`error status code : ${res.status}`);
         }
       })
       .catch(err => console.log(err));
@@ -28,11 +30,13 @@ class ShowFromServer extends Component {
       <div className="ShowFromServer">
         <h2>Show image from server</h2>
         file name from upload directory{" "}
-        <input onChange={evt => this.setState({ newFileName: evt.target.value })} />
+        <input
+          onChange={evt => this.setState({ newFileName: evt.target.value })}
+        />
         <br />
         <button onClick={this.getImageFromServer}>Show</button>
-        <br />
-        {this.state.img ? <img src={this.state.img} alt="pic" /> : ""}
+        <br/>
+        <img src={this.state.img} />
       </div>
     );
   }

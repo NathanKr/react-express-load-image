@@ -2,6 +2,6 @@
   text-align: center;
 }
 
-.App div{
+.App > div{
   margin:10px;
 }
